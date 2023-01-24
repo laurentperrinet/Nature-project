@@ -29,8 +29,8 @@ from PIL import Image, ImageOps
 import time
 import matplotlib.pyplot as plt
 from skimage import data
-from skimage.color import rgb2hsv
-from skimage.color import hsv2rgb
+from skimage.color import rgb2lab
+from skimage.color import lab2rgb
 
 from skimage import color
 
@@ -41,11 +41,8 @@ im = Image.open(r"/Users/mariemdiane/Desktop/ocean.png")
 plt.imshow(im)
 
 rgb_image = np.array(im).copy()
-rgb_image.shape
 
 rgb_image = rgb_image[:,:,:3]
-
-rgb_image.shape
 
 img = rgb_image[:, :530, :]
 
@@ -68,7 +65,8 @@ plt.imshow(lightness_img, cmap='gray')
 
 #plt.imshow(hsv_img)
 
-# On fait la texture fft sur value_image? # Dois faire l'opération sur la phase de value_img
+# On fait la texture fft sur Lightness 
+
 def phase_shift(img, seed=1973):
     img_ = img.copy()
     img_ = (img_-.5)*2
